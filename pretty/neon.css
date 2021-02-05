@@ -1,0 +1,231 @@
+html,body {
+    height:100%;
+}
+html,body,h1,h2,h3,h4,h5,h6,p,header,a,button,nav,textarea,input {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+button {
+    appearance: none;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+}
+body {
+    width: 100%;
+    padding: 0 12px;
+    font-family: 'Lora', serif;
+    color: #111;
+    position: relative;
+}
+main {
+    height: 100%;
+    width: 100%;
+    max-width: 660px;
+    margin: 0 auto;
+}
+/* header */
+header {
+    border-bottom: 1px solid #ddd;
+    padding: 42px 0;
+    margin-bottom: 12px;
+    text-align: center;
+}
+header h2 {
+    color: #333;
+    font-size: 28px;
+    line-height: 40px;
+    font-weight: bold;
+}
+header h2 a {
+    text-decoration: none;
+}
+header p {
+    color: #666;
+    padding: 10px 0 0;
+}
+nav {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 12px;
+}
+nav button,
+nav a {
+    margin-right: 14px;
+}
+nav.clean {
+    padding: 12px 0;
+    text-align: left;
+}
+nav.clean a:last-child {
+    float: right;
+}
+a {
+    color: #333;
+}
+header.blogpost {
+    padding: 10px 0;
+    text-align: left;
+}
+header.blogpost h2 {
+    font-size: 22px;
+}
+header.blogpost h2 a,
+.graylink {
+    color: #aaa;
+    transition: color 400ms ease;
+}
+header.blogpost h2 a:hover,
+.graylink:hover {
+    color: #333;
+}
+button.graylink {
+    width: auto;
+    height: auto;
+    background: #fff;
+    color: #aaa;
+    font-family: 'Lora', serif;
+    text-decoration: underline;
+    font-size: 16px;
+    line-height: normal;
+}
+/* footer */
+footer {
+    text-align: center;
+    padding-bottom: 60px;
+}
+/* article */
+article {
+    margin: 20px 0 65px;    
+}
+article h3 {
+    font-size: 22px;
+    line-height: 30px;
+    font-weight: bold;
+}
+article span, section > span {
+    font-style: italic;
+    margin: 6px 0 10px;
+    font-size: 14px;
+    line-height: 18px;
+    display: inline-block;
+}
+article p {
+    font-size: 15px;
+    line-height: 23px;
+}
+article .graylink {
+    margin-top: 6px;
+    margin-right: 20px;
+    display: inline-block;
+}
+/* blogpost */
+section {
+    margin: 35px auto;
+}
+section > h1 {
+    font-size: 30px;
+    line-height: 40px;
+    font-weight: bold;
+    text-align: center;
+}
+section > span {
+    display: block;
+    text-align: center;
+    font-size: 16px;
+    line-height: 22px;
+}
+section > div {
+    margin: 15px 0;
+}
+section > div p {
+    font-size: 18px;
+    line-height: 26px;
+    padding-bottom: 25px;
+}
+/* menu */
+button {
+    background: #fff;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+}
+form {
+    margin: 40px auto;
+    text-align: center;
+}
+form input {
+    display: inline-block;
+    margin: auto;
+}
+form input.regular {
+    border-radius: 0;
+    height: 32px;
+    line-height: 24px;
+    margin: 7px auto;
+    background: #fff;
+    border: 1px solid #999;
+    outline: 0;
+    width: 220px;
+    padding: 4px 6px;
+    font: 400 16px/24px 'Lora',serif;
+}
+form textarea.regular {
+    border-radius: 0;
+    height: 100px;
+    line-height: 24px;
+    margin: 7px auto;
+    background: #fff;
+    border: 1px solid #999;
+    outline: 0;
+    width: 100%;
+    padding: 4px 6px;
+    font: 400 16px/24px 'Lora',serif;
+}
+form.block {
+    text-align: left;
+}
+form.block input.full {
+    width: 100%;
+}
+form.block input,
+form.block textarea {
+    display: block;
+    margin: 7px 0 25px;
+}
+form input[type="submit"] {
+    width: auto;
+    height: 34px;
+    background: #333;
+    color: #ccc;
+    padding: 0 14px;
+    font-size: 16px;
+    outline: 0;
+    border: 0;
+    margin: 0;
+    cursor: pointer;
+}
+textarea {
+    width: 100%;
+    height: calc(100% - 80px);
+    overflow: auto;
+    resize: none;
+    outline: 0;
+    border: 0;
+    background: #efefef;
+    padding: 8px;
+    font-size: 16px;
+    line-height: 26px;
+}
+form.write {
+    height: 100%;
+    margin: 0;
+}
+form.write input[type="submit"] {
+    width: auto;
+    height: auto;
+    background: #fff;
+    color: #333;
+    font-family: 'Lora', serif;
+    text-decoration: underline;
+    float: right;
+}

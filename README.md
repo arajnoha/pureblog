@@ -1,5 +1,5 @@
 # pureblog
-#### PHP flatfile platform for simple markdown blogging.
+#### PHP flatfile self-hostable platform for simple markdown blogging based on writefreely design and principles.
 ___
 <img width="300" src="pretty/showcase0.png"><img width="300" src="pretty/showcase1.png"><img width="300" src="pretty/showcase2.png">
 ___
@@ -11,6 +11,9 @@ Flat-file system doesn't require any database and no dependencies.
 2. Make sure all content has the rights of 755
 3. Open the folder in browser and log in with password "pencil" (change it in Settings afterwards)
 
+### Use
+Just write. No rules but one, every blog __post must begin with title__ (# heading)
+
 ### Purpose
 I wanted to have a simple environment for me to write my posts without any distractions from the UI, without multiple dependencies and that could run on a web hosting without a server.
 I also want (for me and for people) to actually own the content. Another big important aspect for me personally is the ability to write from everywhere. Static-site-generators are great, but I need to be able to write on my friend's phone or at café. I took a design inpiration from the great project [writefreely](https://github.com/writeas/writefreely), they really came with the barebone solution of having all the important aspects of blog management, __but__ nothing else. I added and am adding some more features I believe are handy, yet still doesn't come in a way.
@@ -19,6 +22,8 @@ I also want (for me and for people) to actually own the content. Another big imp
 This project is free software licenced with GPL. The markdown-to-html backend converter is MIT-licenced code for which the Licence at full can be found at its subdirectory.
 
 ### Upcoming
+ - same-day posts sorted by time
+ - beggining with the title will not be required in future
  - langauges support
  - drafts
  - pinning posts to pages

@@ -18,6 +18,12 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 	
 
 	if (isset($_POST["writearea"]) && $_POST["writearea"] !== "") {
+
+		// initialise the default blog folder
+		if (!file_exists('../p/')) {
+			mkdir('../p/', 0777, true);
+		}		
+
 		include("parsedown/Parsedown.php");
 		$Parsedown = new Parsedown();
 

@@ -4,12 +4,12 @@
 <head>
 		<meta charset="utf-8">
 		<title><?=$siteName;?></title>
-		<link rel="stylesheet" type="text/css" href="pretty/neon.css">
+		<link rel="stylesheet" type="text/css" href="admin/pretty/neon.css">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<meta name="description" content="<?=$siteDescription;?>">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"> 
-		<link rel="icon" type="image/png" href="pretty/i/favicon.png">
+		<link rel="icon" type="image/png" href="admin/pretty/i/favicon.png">
 	    </head>
 	    <body>
 		<main>
@@ -30,8 +30,8 @@
 			}
 		}
 
-		// Reconstruct all posts from /p/
-		$postPath = "p/*";
+		// Reconstruct all posts
+		$postPath = $siteBlogPageSlug."/*";
 		$postArray = glob($postPath, GLOB_ONLYDIR);
 		
         $globalArray = [];
@@ -43,7 +43,7 @@
 		
 		foreach($globalArray as $single) {
 		    echo "<article>";
-			echo "<h3><a href='p/".$single['slug']."'>".$single['name']."</a></h3>";
+			echo "<h3><a href='".$siteBlogPageSlug."/".$single['slug']."'>".$single['name']."</a></h3>";
 		    echo "<span>".$single['date']."</span>";
 			echo "<p>".$single['perex']."</p>";
 		    echo "</article>";
@@ -51,7 +51,7 @@
 
 		?>
 	<footer>
-		<a href="login/" class="graylink">Log in</a>
+		<a href="admin/login.php" class="graylink">Log in</a>
 	</footer>
         </main>
     </body>

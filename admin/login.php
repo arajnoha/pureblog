@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../admin/data.php");
+include("data.php");
 
 if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 	header("Location: ../admin/");
@@ -22,12 +22,12 @@ if (isset($_POST['login'])) {
     <head>
         <meta charset="utf-8">
         <title><?=$siteName;?></title>
-        <link rel="stylesheet" type="text/css" href="../pretty/neon.css">
+        <link rel="stylesheet" type="text/css" href="pretty/neon.css">
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <meta name="description" content="<?=$siteDescription;?>">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"> 
-	<link rel="icon" type="image/png" href="../pretty/i/favicon.png">
+	<link rel="icon" type="image/png" href="pretty/i/favicon.png">
     </head>
     <body>
         <main>

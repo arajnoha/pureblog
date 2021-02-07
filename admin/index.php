@@ -10,12 +10,12 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 	    <head>
 		<meta charset="utf-8">
 		<title><?=$siteName;?></title>
-		<link rel="stylesheet" type="text/css" href="../pretty/neon.css">
+		<link rel="stylesheet" type="text/css" href="pretty/neon.css">
 		<meta name="viewport" content="width=device-width,initial-scale=1">
 		<meta name="description" content="<?=$siteDescription;?>">
 		<link rel="preconnect" href="https://fonts.gstatic.com">
 		<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"> 
-		<link rel="icon" type="image/png" href="../pretty/i/favicon.png">
+		<link rel="icon" type="image/png" href="pretty/i/favicon.png">
 	    </head>
 	    <body>
 		<main>
@@ -26,7 +26,7 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 		<nav>
 			<a href="write.php" class="graylink">Write new post</a>
 			<a href="settings.php" class="graylink">Settings</a>
-			<a href="../logout/" class="graylink">Log out</a>
+			<a href="logout.php" class="graylink">Log out</a>
 		</nav>
 		<?php 
 		// sorting post function
@@ -41,7 +41,7 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 		}
 
 		// Reconstruct all posts from /p/
-		$postPath = "../p/*";
+		$postPath = "../".$siteBlogPageSlug."/*";
 		$postArray = glob($postPath, GLOB_ONLYDIR);
 		
         $globalArray = [];
@@ -53,7 +53,7 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 		
 		foreach($globalArray as $single) {
 		    echo "<article>";
-			echo "<h3><a href='../p/".$single['slug']."'>".$single['name']."</a></h3>";
+			echo "<h3><a href='../".$siteBlogPageSlug."/".$single['slug']."'>".$single['name']."</a></h3>";
 		    echo "<span>".$single['date']."</span>";
 			echo "<p>".$single['perex']."</p>";
 			echo "<a href='#' data-slug='".$single['slug']."' data-name='".$single['name']."' class='graylink action-delete'>Delete</a>";

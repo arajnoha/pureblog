@@ -1,1 +1,1 @@
-<?php $siteName = "Blog title";$siteDescription = "Lengthy blog description"; $sitePassword = "pencil"; ?>
+<?php $siteName = "Blog title";$siteDescription = "Lengthy blog description"; $sitePassword = "pencil";  $siteBlogPageSlug = "blog"; ?>

@@ -31,7 +31,7 @@
 			$pageArray = glob($pagePath, GLOB_ONLYDIR);
 			
 			$nav = "<nav class='pages'>";
-			$nav.=  "<a href='/'>Blog</a>";
+			$nav.=  "<a href='../".basename(__DIR__) ."'>Blog</a>";
 
 			foreach ($pageArray as $page) {
 				if ($page !== "admin" && $page !== $siteBlogPageSlug) {

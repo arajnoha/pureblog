@@ -15,6 +15,7 @@ function stringifyTitle($str, $delimiter = '-') {
 if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) { 
 
 	include("data.php");
+	include("bones/function.php");
 	
 
 	if (isset($_POST["writearea"]) && $_POST["writearea"] !== "") {
@@ -56,7 +57,7 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 		$file = fopen("../".$siteBlogPageSlug."/".$slug."/index.php","w");
 
 		// pre-created html filled with new content
-		$fileString = '<?php include("../../admin/data.php"); ?><!doctype html><html lang="cs"><head><meta charset="utf-8"><title>'.implode($title).'</title><link rel="stylesheet" type="text/css" href="../../admin/pretty/neon.css"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="'.$perex.'"><link rel="preconnect" href="https://fonts.gstatic.com"><link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet"> <link rel="icon" type="image/png" href="../../admin/pretty/i/favicon.png"></head><body><main><header class="blogpost"><h2><a href="../../">'.$siteName.'</a></h2></header><section><h1>'.implode($title).'</h1><span>'.date("Y-m-d").'</span><div>'.$content.'</div></section></main></body></html>';
+		$fileString = makeArticleDOM(implode($title),$perex,$siteName,$content);
 
 		fwrite($file, $fileString);
 		fclose($file);
@@ -92,6 +93,6 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 	    </body>
 	</html>
 <?php } else {
-	header("Location: ../login/");
+	header("Location: ../admin/");
 }
 ?>

@@ -10,6 +10,9 @@ button {
     appearance: none;
     -moz-appearance: none;
     -webkit-appearance: none;
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    border-radius: 0;
 }
 body {
     width: 100%;
@@ -58,6 +61,13 @@ nav.clean {
 }
 nav.clean a:last-child {
     float: right;
+}
+nav.pages {
+    text-align: center;
+    margin-bottom: 12px;
+}
+nav.pages a {
+    margin: 0 15px;
 }
 a {
     color: #333;
@@ -156,6 +166,8 @@ form {
 form input {
     display: inline-block;
     margin: auto;
+    border-radius: 0;
+
 }
 form input.regular {
     border-radius: 0;
@@ -191,6 +203,10 @@ form.block input,
 form.block textarea {
     display: block;
     margin: 7px 0 25px;
+}
+form input[type="checkbox"] {
+    display: inline-block;
+    margin: 15px 0 0;
 }
 form input[type="submit"] {
     width: auto;

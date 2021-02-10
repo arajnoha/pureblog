@@ -1,4 +1,10 @@
-<?php include("admin/data.php"); ?>
+<?php 
+	session_start();
+	include("admin/data.php");
+	if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
+		header("Location: ../admin/");
+	}
+	?>
 <!doctype html>
 <html lang="cs">
 <head>
@@ -17,7 +23,24 @@
 			<h2><?=$siteName;?></h2>
 			<p><?=$siteDescription;?></p>
 		</header>
-        <?php 
+		<?php 
+		
+		// roll out page menu if pages exist
+		$pagePath = "*";
+		$pageArray = glob($pagePath, GLOB_ONLYDIR);
+        
+        $nav = "<nav class='pages'>";
+        $nav.=  "<a href='/'>Blog</a>";
+
+        foreach ($pageArray as $page) {
+            if ($page !== "admin" && $page !== $siteBlogPageSlug) {
+                $name = file_get_contents($page."/name",true);
+                $nav .= "<a href='".$page."'>".$name."</a>";
+            }
+        }
+        
+        $nav .= "</nav>";
+        echo $nav;
 
 		// sorting post function
 		function datesortdesc(array $b, array $a) {

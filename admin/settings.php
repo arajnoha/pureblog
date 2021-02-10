@@ -6,7 +6,11 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 
     if (isset($_POST["sitename"]) && isset($_POST["sitedescription"]) && isset($_POST["sitepassword"])) {
         $file = fopen("data.php","w");
-        $newvalues = '<?php $siteName = "'.$_POST["sitename"].'";$siteDescription = "'.$_POST["sitedescription"].'"; $sitePassword = "'.$_POST["sitepassword"].'";  $siteBlogPageSlug = "'.$_POST["siteblogpageslug"].'"; ?>';
+        $enabledPages = 0;
+        if ($_POST["enablepages"]) {
+            $enabledPages = 1;
+        }
+        $newvalues = '<?php $siteName = "'.$_POST["sitename"].'";$siteDescription = "'.$_POST["sitedescription"].'"; $sitePassword = "'.$_POST["sitepassword"].'";  $siteBlogPageSlug = "'.$_POST["siteblogpageslug"].'";  $siteExtraEnabledPages = "'.$enabledPages.'"; ?>';
 		fwrite($file, $newvalues);
         fclose($file);
 
@@ -37,6 +41,9 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
         <h2><a href="../"><?=$siteName;?></a></h2>
         <p><?=$siteDescription;?></p>
         </header>
+        <nav>
+			<a class="graylink" href="../admin/">Return back</a>
+		</nav>
         <form action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']);?>" method="post" class="block">
         <label for="sitename">Blog title</label>
         <input type="text" id="sitename" name="sitename" class="regular full" value="<?=$siteName;?>" spellcheck="false">
@@ -46,6 +53,12 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
         <input type="text" id="siteblogpageslug" name="siteblogpageslug" class="regular" value="<?=$siteBlogPageSlug;?>">
         <label for="sitepassword">Password</label>
         <input type="password" id="sitepassword" name="sitepassword" class="regular" value="<?=$sitePassword;?>">
+        <hr>
+        <h3>Extra features</h3>
+        <input type="checkbox" name="enablepages" id="enablepages" <?php if ($siteExtraEnabledPages === "1") {echo "checked";}?>>
+        <label for="enablepages">Enable Pages</label>
+        <p>This will allow you to create custom pages (like About me or Contact page) that will be accessible from the menu right below your blog's description. <i>reload if changes doesn't seem to apply</i></p>
+        <hr>
         <input type="submit" name="submit" value="Save">
         </form>
         </main>

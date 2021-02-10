@@ -16,9 +16,10 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 
 	include("data.php");
 	include("bones/function.php");
-	$id = $_GET["id"];
+	
 
 	if (isset($_POST["writearea"]) && $_POST["writearea"] !== "") {
+
 		include("parsedown/Parsedown.php");
 		$Parsedown = new Parsedown();
 
@@ -33,29 +34,24 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
         $content = substr($content, strpos($content, '</h1>') + 5);
 		$perex = mb_strimwidth(strip_tags($content), 0, 180, "...");
 
-		// delete original article if slug differs
-		if ($slug !== $id) {
-			array_map('unlink', glob("../".$siteBlogPageSlug."/".$id."/*.*"));
-			rmdir("../".$siteBlogPageSlug."/".$id);
-			mkdir("../".$siteBlogPageSlug."/".$slug);
-		}
 
-		// create metafile
-		$file = fopen("../".$siteBlogPageSlug."/".$slug."/meta.json","w");
-		$fileArray = array('name' => implode($title), 'slug' => $slug, 'date' => date("Y-m-d"), 'perex' => $perex);
-		fwrite($file, json_encode($fileArray));
-		fclose($file);
+		mkdir("../".$slug);
 
 		// create markdown backup for future edits
-		$file = fopen("../".$siteBlogPageSlug."/".$slug."/article.md","w");
+		$file = fopen("../".$slug."/article.md","w");
 		fwrite($file, $_POST["writearea"]);
 		fclose($file);
 
+		// create title file for navigation
+		$file = fopen("../".$slug."/name","w");
+		fwrite($file, implode($title));
+		fclose($file);
+
 		// create actual permalink file
-		$file = fopen("../".$siteBlogPageSlug."/".$slug."/index.php","w");
+		$file = fopen("../".$slug."/index.php","w");
 
 		// pre-created html filled with new content
-		$fileString = makeArticleDOM(implode($title),$perex,$siteName,$content);
+		$fileString = makePageDOM(implode($title),$perex,$siteDescription,$siteName,$content,$slug);
 
 		fwrite($file, $fileString);
 		fclose($file);
@@ -80,16 +76,12 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 	    </head>
 	    <body>
 		<main>
-		<form action="edit.php?id=<?php echo($_GET['id'])?>" method="post" class="write">
+		<form action="addpage.php" method="post" class="write">
 		<nav class="clean">
-			<a class="graylink" href="../admin/">Discard changes</a>
-			<input type="submit" value="Save"> 
+			<a class="graylink" href="../admin/">Discard</a>
+			<input type="submit" value="Publish"> 
 		</nav>
-		<textarea name="writearea" id="writearea" spellcheck="false" autofocus><?php
-				$originalFile = fopen("../".$siteBlogPageSlug."/".$id."/article.md", "r") or die("php file reading error.");
-				echo fread($originalFile,filesize("../".$siteBlogPageSlug."/".$id."/article.md"));
-				fclose($originalFile);
-		?></textarea>		
+		<textarea name="writearea" spellcheck="false" placeholder="# Start with a title" autofocus></textarea>		
 		</form>
 		</main>
 	    </body>

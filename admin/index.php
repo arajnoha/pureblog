@@ -23,8 +23,10 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 			<h2><a href="../"><?=$siteName;?></a></h2>
 			<p><?=$siteDescription;?></p>
 		</header>
+		<?php include("bones/nav.php"); ?>
 		<nav>
 			<a href="write.php" class="graylink">Write new post</a>
+			<?php if ($siteExtraEnabledPages === "1") { echo '<a href="addpage.php" class="graylink">Add new page</a>'; } ?>
 			<a href="settings.php" class="graylink">Settings</a>
 			<a href="logout.php" class="graylink">Log out</a>
 		</nav>
@@ -76,6 +78,6 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 	    </body>
 	</html>
 <?php } else {
-	header("Location: ../login/");
+	header("Location: ../admin/");
 }
 ?>

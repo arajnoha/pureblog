@@ -57,6 +57,9 @@ $DOM = <<<LOL
 <?php include("../admin/bones/nav.php"); ?>
 <?php include("../admin/bones/pageadminnav.php"); ?>
 <section><div>$content</div></section>
+<footer>
+<a href="admin/login.php" class="graylink">Log in</a>  |  <a href="https://github.com/arajnoha/pureblog" class="graylink">pureblog project</a>
+</footer>
 </main>
 <script src="../admin/pretty/do.js"></script>
 </body>

@@ -76,7 +76,7 @@
 
 		?>
 	<footer>
-		<a href="admin/login.php" class="graylink">Log in</a>
+		<a href="admin/login.php" class="graylink">Log in</a>  |  <a href="https://github.com/arajnoha/pureblog" class="graylink">pureblog project</a>
 	</footer>
         </main>
     </body>

@@ -6,7 +6,7 @@ Flat-file system doesn't require any database and no dependencies.
 
 ### Install
 1. Simply copy all content to root or subfolder of your web server / hosting.
-2. Make sure that the directories has rights of 775 and files 664.
+2. Make sure that blog has write/read permissions (often fixable with 755)
 3. Open the folder in browser and log in with password "pencil" (change it in Settings afterwards)
 
 ### Use

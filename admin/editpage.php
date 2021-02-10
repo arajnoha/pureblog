@@ -61,7 +61,7 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 		fwrite($file, $fileString);
 		fclose($file);
 
-		header("Location: ../".$id);
+		header("Location: index.php");
 
 	}
 
@@ -81,7 +81,7 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 	    </head>
 	    <body>
 		<main>
-		<form action="addpage.php" method="post" class="write">
+		<form action="editpage.php?id=<?php echo($_GET['id'])?>" method="post" class="write">
 		<nav class="clean">
 			<a class="graylink" href="../admin/">Discard</a>
 			<input type="submit" value="Publish"> 

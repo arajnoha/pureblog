@@ -1,5 +1,4 @@
 <?php
-session_start();
 include("../admin/data.php");
 
 function makeArticleDOM($title,$perex,$siteName,$content) {

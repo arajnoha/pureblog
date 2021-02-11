@@ -44,7 +44,7 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 
 		// create metafile
 		$file = fopen("../".$siteBlogPageSlug."/".$slug."/meta.json","w");
-		$fileArray = array('name' => implode($title), 'slug' => $slug, 'date' => date("Y-m-d"), 'perex' => $perex);
+		$fileArray = array('name' => implode($title), 'slug' => $slug, 'date' => date("Y-m-d"), 'perex' => $perex, 'timestamp' => strtotime("now"));
 		fwrite($file, json_encode($fileArray));
 		fclose($file);
 

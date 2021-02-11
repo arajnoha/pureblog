@@ -33,9 +33,9 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 		<?php 
 		// sorting post function
 		function datesortdesc(array $b, array $a) {
-			if ($a['date'] < $b['date']) {
+			if ($a['timestamp'] < $b['timestamp']) {
 				return -1;
-			} else if ($a['date'] > $b['date']) {
+			} else if ($a['timestamp'] > $b['timestamp']) {
 				return 1;
 			} else {
 				return 0;

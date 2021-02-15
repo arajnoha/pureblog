@@ -61,7 +61,7 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
         <h3>Extra features</h3>
         <input type="checkbox" name="enablepages" id="enablepages" <?php if ($siteExtraEnabledPages === "1") {echo "checked";}?>>
         <label for="enablepages">Enable Pages</label>
-        <p>This will allow you to create custom pages (like About me or Contact page) that will be accessible from the menu right below your blog's description. <i>reload if changes doesn't seem to apply</i></p>
+        <p>This will allow you to create custom pages (like About me or Contact page) that will be accessible from the menu right below your blog's description. <i>You can even hack yourself a link outside if you put it in new page's heading.</i></p>
         <hr>
         <p>Note: Pureblog automatically generates an RSS feed at:<br><a href="<?php echo (dirname($blogURL).'/rss.php');?>"><?php echo (dirname($blogURL).'/rss.php');?></a></p>
         <hr>

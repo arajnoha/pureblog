@@ -23,12 +23,38 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 			<h2><a href="../"><?=$siteName;?></a></h2>
 			<p><?=$siteDescription;?></p>
 		</header>
-		<?php include("bones/nav.php"); ?>
+		<?php 
+
+		if ($siteExtraEnabledPages === "1") {
+			$pagePath = "../*";
+			$pageArray = glob($pagePath, GLOB_ONLYDIR);
+			
+			$nav = "<nav class='pages'>";
+			$nav.=  "<a href='../'>Blog</a>";
+
+			foreach ($pageArray as $page) {
+				if ($page !== "../admin" && $page !== "../".$siteBlogPageSlug) {
+					$name = file_get_contents($page."/name",true);
+					if (strpos($name, '</a>') !== false) {
+						$nav .= $name."<button class='delete-link' data-action-delete='".basename($page)."'>X</button>";
+					} else {
+						$nav .= "<a href='".$page."'>".$name."</a>";
+					}				}
+			}
+			
+			$nav .= "</nav>";
+			echo $nav;
+		}
+		
+		
+		?>
+
+
+
 		<nav>
 			<a href="write.php" class="graylink">Write post</a>
 			<?php if ($siteExtraEnabledPages === "1") { 
 				echo '<a href="addpage.php" class="graylink">Add page</a>'; 
-				echo '<a href="addlink.php" class="graylink addlink">Add link</a>'; 
 				} ?>
 			<a href="settings.php" class="graylink">Settings</a>
 			<a href="logout.php" class="graylink">Log out</a>
@@ -76,10 +102,11 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 						window.location.href = "delete.php?id="+e.target.getAttribute("data-slug");
 					}
 				}
-				if (e.target.matches("a.graylink.addlink")) {
+				if (e.target.matches("button.delete-link")) {
 					e.preventDefault();
-					let link = prompt("Zadejte váš odkaz v Markdownu tzn.: [název](URL):");
-					
+					if (confirm("Do you really want to delete the link "+e.target.previousElementSibling.innerText+" ?")) {
+						window.location.href = "deletepage.php?id="+e.target.getAttribute("data-action-delete");
+					}
 				}
 			});
 		</script>

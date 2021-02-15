@@ -45,10 +45,6 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 			fwrite($file, implode($title));
 			fclose($file);
 
-			// create markdown backup for future edits
-			$file = fopen("../".$slug."/article.md","w");
-			fwrite($file, $_POST["writearea"]);
-			fclose($file);
 
 		} else {
 

@@ -36,7 +36,11 @@
 			foreach ($pageArray as $page) {
 				if ($page !== "admin" && $page !== $siteBlogPageSlug) {
 					$name = file_get_contents($page."/name",true);
-					$nav .= "<a href='".$page."'>".$name."</a>";
+					if (strpos($name, '</a>') !== false) {
+						$nav .= $name;
+					} else {
+						$nav .= "<a href='".$page."'>".$name."</a>";
+					}	
 				}
 			}
 			

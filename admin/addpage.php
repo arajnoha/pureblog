@@ -26,35 +26,62 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 		// parse all content to html
 		$content = $Parsedown->text($_POST["writearea"]);
 		
-        // get title and slug before cutting it from the content
+        // get title before cutting it from the content
 		$title = getTitle($content);
-		$slug = stringifyTitle(implode($title));
+		
+		// check if it's a link hack
+		if (strpos(implode($title), '</a>') !== false) {
+			$content = explode('">',implode($title))[1];
+			$content = explode('</a>',$content)[0];
 
-        // crop the title and make perex
-        $content = substr($content, strpos($content, '</h1>') + 5);
-		$perex = mb_strimwidth(strip_tags($content), 0, 180, "...");
+
+			// make folder name from nice slug 
+			$slug = stringifyTitle($content);
+
+			mkdir("../".$slug);
+
+			// create title file with full <a> value
+			$file = fopen("../".$slug."/name","w");
+			fwrite($file, implode($title));
+			fclose($file);
+
+			// create markdown backup for future edits
+			$file = fopen("../".$slug."/article.md","w");
+			fwrite($file, $_POST["writearea"]);
+			fclose($file);
+
+		} else {
+
+			// get slug before cutting it from the content
+			$slug = stringifyTitle(implode($title));
+
+			// crop the title and make perex
+			$content = substr($content, strpos($content, '</h1>') + 5);
+			$perex = mb_strimwidth(strip_tags($content), 0, 180, "...");
 
 
-		mkdir("../".$slug);
+			mkdir("../".$slug);
 
-		// create markdown backup for future edits
-		$file = fopen("../".$slug."/article.md","w");
-		fwrite($file, $_POST["writearea"]);
-		fclose($file);
+			// create markdown backup for future edits
+			$file = fopen("../".$slug."/article.md","w");
+			fwrite($file, $_POST["writearea"]);
+			fclose($file);
 
-		// create title file for navigation
-		$file = fopen("../".$slug."/name","w");
-		fwrite($file, implode($title));
-		fclose($file);
+			// create title file for navigation
+			$file = fopen("../".$slug."/name","w");
+			fwrite($file, implode($title));
+			fclose($file);
 
-		// create actual permalink file
-		$file = fopen("../".$slug."/index.php","w");
+			// create actual permalink file
+			$file = fopen("../".$slug."/index.php","w");
 
-		// pre-created html filled with new content
-		$fileString = makePageDOM(implode($title),$perex,$siteDescription,$siteName,$content,$slug);
+			// pre-created html filled with new content
+			$fileString = makePageDOM(implode($title),$perex,$siteDescription,$siteName,$content,$slug);
 
-		fwrite($file, $fileString);
-		fclose($file);
+			fwrite($file, $fileString);
+			fclose($file);
+
+		}
 
 		header("Location: index.php");
 

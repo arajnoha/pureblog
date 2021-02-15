@@ -25,8 +25,11 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 		</header>
 		<?php include("bones/nav.php"); ?>
 		<nav>
-			<a href="write.php" class="graylink">Write new post</a>
-			<?php if ($siteExtraEnabledPages === "1") { echo '<a href="addpage.php" class="graylink">Add new page</a>'; } ?>
+			<a href="write.php" class="graylink">Write post</a>
+			<?php if ($siteExtraEnabledPages === "1") { 
+				echo '<a href="addpage.php" class="graylink">Add page</a>'; 
+				echo '<a href="addlink.php" class="graylink addlink">Add link</a>'; 
+				} ?>
 			<a href="settings.php" class="graylink">Settings</a>
 			<a href="logout.php" class="graylink">Log out</a>
 		</nav>
@@ -72,6 +75,11 @@ if (isset($_SESSION["in"]) && $_SESSION["in"] === 1) {
 					if (confirm("Do you really want to delete the post called "+e.target.getAttribute("data-name")+" ?")) {
 						window.location.href = "delete.php?id="+e.target.getAttribute("data-slug");
 					}
+				}
+				if (e.target.matches("a.graylink.addlink")) {
+					e.preventDefault();
+					let link = prompt("Zadejte váš odkaz v Markdownu tzn.: [název](URL):");
+					
 				}
 			});
 		</script>

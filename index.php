@@ -34,13 +34,13 @@
 			$nav.=  "<a href='".$_SERVER['REQUEST_URI']."'>Blog</a>";
 
 			foreach ($pageArray as $page) {
-				if ($page !== "admin" && $page !== $siteBlogPageSlug) {
-					$name = file_get_contents($page."/name",true);
-					if (strpos($name, '</a>') !== false) {
-						$nav .= $name;
-					} else {
-						$nav .= "<a href='".$page."'>".$name."</a>";
-					}	
+				if ($page !== "admin" && $page !== $siteBlogPageSlug && file_exists($page."/name")) {
+						$name = file_get_contents($page."/name",true);
+						if (strpos($name, '</a>') !== false) {
+							$nav .= $name;
+						} else {
+							$nav .= "<a href='".$page."'>".$name."</a>";
+						}	
 				}
 			}
 			

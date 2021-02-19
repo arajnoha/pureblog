@@ -39,6 +39,7 @@ usort($globalArray, 'datesortdesc');
 foreach($globalArray as $single) {
     echo "<item>";
     echo "<title>".$single['name']."</title>";
+    echo "<pubDate>".$single['date']."</pubDate>";
     echo "<link>".dirname($url)."/".$siteBlogPageSlug."/".$single['slug']."</link>";
     echo "<description>".$single['perex']."</description>";
     echo "</item>";
